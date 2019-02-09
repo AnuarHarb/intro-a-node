@@ -1,14 +1,15 @@
 var cowsay = require('cowsay');
+const intro = require('./intro');
 
-let nombre = "Anuar";
-let fraceVaquita = "Surcaré los 7 mares de pasto";
+let personaje = "Anuar";
+let villano = "Juan";
+let lugar = "Centraal";
+let hobby = "Programar";
 
-let historia = "Hola, mi nombre es " + nombre + ". Y hoy me enconté con una vaquita pitara que decía: " + fraceVaquita;
-
-console.log(historia);
+console.log(intro.historia);
 
 console.log(cowsay.say({
-  text : fraceVaquita,
+  text : 'hola',
   e : "x-o",
   T : "v "
 }));
