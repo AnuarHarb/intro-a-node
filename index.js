@@ -6,7 +6,7 @@ let villano = "Juan";
 let lugar = "Centraal";
 let hobby = "Programar";
 
-console.log(intro.historia);
+console.log(intro.historia(personaje, lugar));
 
 console.log(cowsay.say({
   text : 'hola',
