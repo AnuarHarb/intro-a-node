@@ -1,19 +1,43 @@
-var cowsay = require('cowsay');
-var introduccion = require('./introduccion');
+const cowsay = require('cowsay');
+const fs = require('fs');
 
-let nombre = "Anuar";
-let edad = 5;
-let villano = "Edgar";
-let fraceVaquita = "Surcaré los 7 mares de pasto";
+const introduccion = require('./introduccion');
+const nudo = require('./nudo');
+const desenlace = require('./desenlace');
 
-let historia = "Hola, mi nombre es " + nombre + ". Y hoy me enconté con una vaquita pitara que decía: " + fraceVaquita;
+const nombre = "Anuar";
+const edad = 5;
+const villano = "Edgar";
+const fraceVaquita = "Surcaré los 7 mares de pasto";
 
-console.log(introduccion.historia(nombre, edad, villano));
-console.log(nudo.historia(nombre, edad, villano));
-console.log(desenlace.historia(nombre, edad, villano));
+fs.readFile('alumnos.txt', 'utf-8', function(err, text) {
+  if(err) throw err
+  let alumnos = text.split(',');
+  const random = Math.floor(Math.random() * alumnos.length);
+  const personaje = alumnos[random];
+  crearHistoria(personaje);
+});
 
-console.log(cowsay.say({
-  text : "Hola Esther, ¡Soy una vaquita pirtata!",
-  e : "x-o",
-  T : "v "
-}));
+function crearHistoria(personaje) {
+  const inicio = introduccion.historia(personaje, edad, villano);
+  const mitad = nudo.historia(personaje, edad, villano);
+  const final = desenlace.historia(personaje, edad, villano);
+
+  const vaquita = cowsay.say({
+    text : "Hola Esther, ¡Soy una vaquita pirtata!",
+    e : "x-o",
+    T : "v "
+  });
+
+  const historia = inicio + mitad + final + '\n' + vaquita;
+  guardarHistoria(historia);
+
+  console.log(historia);
+}
+
+function guardarHistoria(historia) {
+  fs.writeFile("historia.txt", historia, function(err) {
+    if(err) throw err
+    console.log("Se ha guardad esta épica historia");
+  });
+}
