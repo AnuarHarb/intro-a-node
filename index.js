@@ -1,6 +1,6 @@
 // Modulos
-const cowsay = require('cowsay');
 const fs = require('fs');
+const cowsay = require('cowsay');
 const intro = require('./intro');
 const final = require('./final');
 
@@ -30,7 +30,6 @@ fs.readFile('personajes.txt', 'utf-8', function(err, contenido){
       throw err;
     }
   });
-
 });
 
 // Partes de historia
@@ -40,14 +39,6 @@ function juntarHistoria(personaje) {
   const historiaCompleta = introHistoria + finalHistoria;
   return historiaCompleta;
 }
-
-
-
-
-
-// muchasPalabras // Camel Case
-// muchas-palabras // dash case
-// muchas_palabras //snake case
 
 console.log(cowsay.say({
   text : 'hola',
