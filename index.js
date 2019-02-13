@@ -1,6 +1,6 @@
 // Modulos
-const fs = require('fs');
 const cowsay = require('cowsay');
+const fs = require('fs');
 const intro = require('./intro');
 const final = require('./final');
 
